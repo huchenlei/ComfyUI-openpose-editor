@@ -1,9 +1,11 @@
+import { app } from "/scripts/app.js";
+
 app.registerExtension({
     name: "huchenlei.OpenPoseEditor",
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         if (nodeData.name !== "huchenlei.OpenPoseEditor") {
-            return
+            return;
         }
 
         const onNodeCreated = nodeType.prototype.onNodeCreated;
@@ -20,9 +22,9 @@ app.registerExtension({
             this.serialize_widgets = true;
 
             // Output & widget
-            this.imageWidget = this.widgets.find(w => w.name === "image");
-            this.imageWidget.callback = this.showImage.bind(this);
-            this.imageWidget.disabled = true;
+            // this.imageWidget = this.widgets.find(w => w.name === "image");
+            // this.imageWidget.callback = this.showImage.bind(this);
+            // this.imageWidget.disabled = true;
 
             // Non-serialized widgets
             this.jsonWidget = this.addWidget("text", "", this.properties.savedPose, "savedPose");
