@@ -6,6 +6,8 @@ import { ClipspaceDialog } from "../../extensions/core/clipspace.js";
 
 
 (function () {
+    const EDITOR_URL = 'https://huchenlei.github.io/sd-webui-openpose-editor/';
+
     function addMenuHandler(nodeType, cb) {
         const getOpts = nodeType.prototype.getExtraMenuOptions;
         nodeType.prototype.getExtraMenuOptions = function () {
@@ -28,61 +30,46 @@ import { ClipspaceDialog } from "../../extensions/core/clipspace.js";
 
         constructor() {
             super();
-            this.element = $el("div.comfy-modal", { parent: document.body },
-                [$el("div.comfy-modal-content",
-                    [...this.createButtons()]),
-                ]);
+            this.element = $el("div.comfy-modal", {
+                id: "comfyui-openpose-editor",
+                parent: document.body,
+                style: {
+                    width: "80vw",
+                    height: "80vh",
+                },
+            }, [
+                $el("div.comfy-modal-content", {
+                    style: {
+                        width: "100%",
+                        height: "100%",
+                    },
+                }, [
+                    $el("iframe", {
+                        src: EDITOR_URL + "?theme=dark",
+                        style: {
+                            width: "100%",
+                            height: "100%",
+                        },
+                    }),
+                    ...this.createButtons(),
+                ]),
+            ]);
         }
 
         createButtons() {
-            return [];
+            const closeBtn = $el("button", {
+                type: "button",
+                textContent: "Close",
+                onclick: () => this.close(),
+            });
+            return [
+                closeBtn,
+            ];
         }
 
         show() {
-            this.mask_image = null;
-            self.prompt_points = [];
-
-            this.message_box = $el("p", ["Please wait a moment while the SAM model and the image are being loaded."]);
-            this.element.appendChild(this.message_box);
-
-            if (!this.is_layout_created) {
-                console.log("Creating layout.");
-                // layout
-                this.is_layout_created = true;
-            }
-
-            // if (ComfyApp.clipspace_return_node) {
-            //     this.saveButton.innerText = "Save to node";
-            // } else {
-            //     this.saveButton.innerText = "Save";
-            // }
-            // this.saveButton.disabled = true;
-            this.element.style.display = "block";
-            this.element.style.zIndex = 8888; // NOTE: alert dialog must be high priority.
+            this.element.style.display = "flex";
         }
-    }
-
-    // const EDITOR_URL = 'https://huchenlei.github.io/sd-webui-openpose-editor/';
-    const EDITOR_URL = 'http://localhost:5173/';
-    function createOpenposeEditorModal() {
-        const modalHTML = `
-            <span class="cnet-modal-close">&times;</span>
-            <div class="cnet-modal-content">
-                <iframe src="${EDITOR_URL}?theme=dark"></iframe>
-            </div>
-        `;
-
-        const modal = document.createElement('div');
-        modal.classList.add('cnet-modal');
-        modal.innerHTML = modalHTML;
-        modal.hidden = true;
-        document.body.appendChild(modal);
-
-        document.querySelector('.cnet-modal-close').addEventListener('click', () => {
-            modal.hidden = true;
-        });
-
-        return modal;
     }
 
     function isOpenposeEditor(nodeData) {
