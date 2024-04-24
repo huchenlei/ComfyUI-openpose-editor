@@ -293,13 +293,13 @@ def draw_poses(
     return canvas
 
 
-def decode_json_as_poses(json_string: str) -> Tuple[List[PoseResult], int, int]:
+def decode_json_as_poses(pose_json) -> Tuple[List[PoseResult], int, int]:
     """Decode the json_string complying with the openpose JSON output format
     to poses that controlnet recognizes.
     https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/02_output.md
 
     Args:
-        json_string: The json string to decode.
+        pose_json: The json object to decode.
         normalize_coords: Whether to normalize coordinates of each keypoint by canvas height/width.
                           `draw_pose` only accepts normalized keypoints. Set this param to True if
                           the input coords are not normalized.
@@ -309,7 +309,6 @@ def decode_json_as_poses(json_string: str) -> Tuple[List[PoseResult], int, int]:
         canvas_height
         canvas_width
     """
-    pose_json = json.loads(json_string)
     height = pose_json["canvas_height"]
     width = pose_json["canvas_width"]
 
