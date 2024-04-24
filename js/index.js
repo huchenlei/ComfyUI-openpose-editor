@@ -45,29 +45,18 @@ import { ClipspaceDialog } from "../../extensions/core/clipspace.js";
             this.message_box = $el("p", ["Please wait a moment while the SAM model and the image are being loaded."]);
             this.element.appendChild(this.message_box);
 
-            if (self.imgCtx) {
-                self.imgCtx.clearRect(0, 0, self.imageCanvas.width, self.imageCanvas.height);
-            }
-
-            const target_image_path = ComfyApp.clipspace.imgs[ComfyApp.clipspace['selectedIndex']].src;
-            this.load_sam(target_image_path);
-
             if (!this.is_layout_created) {
+                console.log("Creating layout.");
                 // layout
                 this.is_layout_created = true;
-
-                // replacement of onClose hook since close is not real close
-                const self = this;
             }
 
-            // this.setImages(target_image_path, this.imgCanvas, this.pointsCanvas);
-
-            if (ComfyApp.clipspace_return_node) {
-                this.saveButton.innerText = "Save to node";
-            } else {
-                this.saveButton.innerText = "Save";
-            }
-            this.saveButton.disabled = true;
+            // if (ComfyApp.clipspace_return_node) {
+            //     this.saveButton.innerText = "Save to node";
+            // } else {
+            //     this.saveButton.innerText = "Save";
+            // }
+            // this.saveButton.disabled = true;
             this.element.style.display = "block";
             this.element.style.zIndex = 8888; // NOTE: alert dialog must be high priority.
         }
