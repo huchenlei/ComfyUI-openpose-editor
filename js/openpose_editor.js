@@ -88,8 +88,8 @@ class OpenposeEditorDialog extends ComfyDialog {
     createLayout() {
         this.iframeElement = $el("iframe", {
             // Change to for local dev
-            src: "http://localhost:5173",
-            // src: "https://huchenlei.github.io/sd-webui-openpose-editor?theme=dark",
+            // src: "http://localhost:5173",
+            src: "https://huchenlei.github.io/sd-webui-openpose-editor?theme=dark",
             style: {
                 width: "100%",
                 height: "100%",
