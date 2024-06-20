@@ -3,12 +3,17 @@ import filecmp
 import shutil
 import __main__
 
-from .lib_openpose_editor import server
+
+from .openpose_editor_nodes import LoadOpenposeJSONNode
 
 
-NODE_CLASS_MAPPINGS = {}
+NODE_CLASS_MAPPINGS = {
+    "huchenlei.LoadOpenposeJSON": LoadOpenposeJSONNode,
+}
 
-NODE_DISPLAY_NAME_MAPPINGS = {}
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "huchenlei.LoadOpenposeJSON": "Load Openpose JSON",
+}
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
 
