@@ -17,6 +17,3 @@
 Click `Send pose to ControlNet` will send the pose back to ComfyUI and close the modal.
 ![image](https://github.com/huchenlei/ComfyUI-openpose-editor/assets/20929282/5178044f-1577-4174-97ca-63b7404b317c)
 ![image](https://github.com/huchenlei/ComfyUI-openpose-editor/assets/20929282/c21bc5d0-4488-4b6b-8857-398cfbeebd53)
-
-## Note
-You need to use comfyui_controlnet_aux with https://github.com/Fannovel16/comfyui_controlnet_aux/pull/381 meregd to get `Render Pose JSON` nodes.
