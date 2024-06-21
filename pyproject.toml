@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-openpose-editor"
+description = "Port of [a/https://github.com/huchenlei/sd-webui-openpose-editor](https://github.com/huchenlei/sd-webui-openpose-editor) in ComfyUI"
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/huchenlei/ComfyUI-openpose-editor"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "huchenlei"
+DisplayName = "ComfyUI-openpose-editor"
+Icon = ""
