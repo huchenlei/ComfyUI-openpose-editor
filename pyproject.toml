@@ -2,7 +2,7 @@
 name = "comfyui-openpose-editor"
 description = "Port of [a/https://github.com/huchenlei/sd-webui-openpose-editor](https://github.com/huchenlei/sd-webui-openpose-editor) in ComfyUI"
 version = "1.0.2"
-license = "LICENSE"
+license = { file = "LICENSE" }
 
 [project.urls]
 Repository = "https://github.com/huchenlei/ComfyUI-openpose-editor"
