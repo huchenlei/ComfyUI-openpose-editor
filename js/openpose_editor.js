@@ -52,6 +52,7 @@ class OpenposeEditorDialog extends ComfyDialog {
                 const targetNode = ComfyApp.clipspace_return_node;
                 const textAreaElement = targetNode.widgets[0].element;
                 textAreaElement.value = JSON.stringify(event.data.poses);
+                ComfyApp.onClipspaceEditorClosed();
                 this.close();
             }
         });
