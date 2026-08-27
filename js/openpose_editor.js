@@ -50,8 +50,15 @@ class OpenposeEditorDialog extends ComfyDialog {
             const message = event.data;
             if (message.modalId === 0) {
                 const targetNode = ComfyApp.clipspace_return_node;
-                const textAreaElement = targetNode.widgets[0].element;
-                textAreaElement.value = JSON.stringify(event.data.poses);
+                const widget = targetNode.widgets[0];
+                const json = JSON.stringify(event.data.poses);
+                if (widget) {
+                    widget.value = json;
+                    if (widget.element) {
+                        widget.element.value = json;
+                    }
+                    app.graph.setDirtyCanvas(true, true);
+                }
                 this.close();
             }
         });
